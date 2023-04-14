@@ -1,25 +1,27 @@
 import React, { Suspense } from 'react';
-import ReactDOM from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import { SWRConfig } from 'swr';
+import { ErrorBoundary } from 'react-error-boundary';
 
 import { App } from './App';
 import { fetcher } from './api';
 import './index.css';
-import { ErrorBoundary } from 'react-error-boundary';
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+const root = createRoot(document.getElementById('root') as HTMLElement);
+
+root.render(
 	<React.StrictMode>
-		<SWRConfig
-			value={{
-				fetcher,
-				suspense: true,
-			}}
-		>
+		<ErrorBoundary fallback={<div>Dashboard Broken</div>}>
 			<Suspense fallback={<div>Dashboard skeleton</div>}>
-				<ErrorBoundary fallback={<div>Dashboard Broken</div>}>
+				<SWRConfig
+					value={{
+						fetcher,
+						suspense: true,
+					}}
+				>
 					<App />
-				</ErrorBoundary>
+				</SWRConfig>
 			</Suspense>
-		</SWRConfig>
+		</ErrorBoundary>
 	</React.StrictMode>
 );
