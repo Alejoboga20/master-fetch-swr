@@ -4,7 +4,7 @@ import { PokemonGrid, PokeBallIcon } from './components';
 import { PokemonResponse } from './types/pokemon';
 
 export const App = () => {
-	const { data } = useSWR<PokemonResponse>('pokemon?limit=100');
+	const { data } = useSWR<PokemonResponse>('pokemon?limit=650');
 
 	if (!data) throw new Error();
 
