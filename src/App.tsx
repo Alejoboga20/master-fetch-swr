@@ -4,10 +4,10 @@ import { PokemonGrid, PokeBallIcon } from './components';
 import { PokemonResponse } from './types/pokemon';
 import { fetcher } from './api';
 
-preload('pokemon?limit=650', fetcher);
+preload('pokemon?limit=100', fetcher);
 
 export const App = () => {
-	const { data } = useSWR<PokemonResponse>('pokemon?limit=650');
+	const { data } = useSWR<PokemonResponse>('pokemon?limit=20');
 
 	if (!data) throw new Error();
 

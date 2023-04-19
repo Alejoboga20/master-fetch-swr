@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import closeModalIcon from '/icons/close-modal.svg';
 import useSWR from 'swr';
+import { PokemonDetails as IPokemonDetails } from '../types/pokemon';
 
 interface ModalProps {
 	isOpen: boolean;
@@ -9,7 +10,10 @@ interface ModalProps {
 }
 
 export const PokemonDetails = ({ isOpen, onClose, index }: ModalProps) => {
-	const { data } = useSWR(`pokemon/${index}`);
+	const { data } = useSWR<IPokemonDetails>(`pokemon/${index}`);
+	console.log(data);
+
+	if (!isOpen) return null;
 
 	return (
 		<div className='absolute inset-0 z-10 h-screen'>
@@ -23,7 +27,12 @@ export const PokemonDetails = ({ isOpen, onClose, index }: ModalProps) => {
 					<button className='absolute right-6' onClick={onClose}>
 						<img alt='close modal' src={closeModalIcon} />
 					</button>
-					<div>{JSON.stringify(data)}</div>
+					<div className='flex flex-col justify-center items-center p-2'>
+						<h1 className='text-2xl capitalize'>{data?.name}</h1>
+
+						<img src={data?.sprites.front_default} className='w-[200px]' />
+						<img src={data?.sprites.back_default} className='w-[200px]' />
+					</div>
 				</div>
 			</div>
 		</div>
