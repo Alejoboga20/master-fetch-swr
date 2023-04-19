@@ -5,7 +5,7 @@ import { PokeBallIcon } from '../components';
 
 export const BaseLayout = ({ children }: PropsWithChildren) => {
 	return (
-		<main className='p-8 bg-primary-dark text-primary-main h-screen'>
+		<main className='p-8 bg-primary-dark text-primary-main h-full'>
 			<Link to='/'>
 				<div className='flex mb-4 hover:cursor-pointer'>
 					<PokeBallIcon />

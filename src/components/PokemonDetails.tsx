@@ -8,7 +8,7 @@ export const PokemonDetails = () => {
 	const { data } = useSWR<IPokemonDetails>(`pokemon/${id}`);
 
 	return (
-		<div className='flex flex-col justify-center items-center p-2'>
+		<div className='flex flex-col items-center p-2 h-screen'>
 			<h1 className='text-2xl capitalize'>{data?.name}</h1>
 
 			<img src={data?.sprites.front_default} className='w-[200px]' />
