@@ -1,6 +1,5 @@
-import { Suspense } from 'react';
-import closeModalIcon from '/icons/close-modal.svg';
 import useSWR from 'swr';
+import closeModalIcon from '/icons/close-modal.svg';
 import { PokemonDetails as IPokemonDetails } from '../types/pokemon';
 
 interface ModalProps {
