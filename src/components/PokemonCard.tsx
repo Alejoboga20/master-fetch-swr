@@ -1,3 +1,6 @@
+import { preload } from 'swr';
+import { fetcher } from '../api';
+
 interface PokemonCardProps {
 	name: string;
 	index: number;
@@ -7,9 +10,16 @@ export const PokemonCard = ({ name, index }: PokemonCardProps) => {
 	const indexToShow =
 		index < 10 ? `00${index}` : index === 10 ? `0${index}` : index < 100 ? `0${index}` : index;
 
+	const onHover = () => {
+		preload(`pokemon/${index}`, fetcher);
+	};
+
 	return (
 		<>
-			<div className='bg-slate-600 rounded-lg p-4 hover:cursor-pointer hover:bg-slate-950'>
+			<div
+				className='bg-slate-600 rounded-lg p-4 hover:cursor-pointer hover:bg-slate-950'
+				onMouseEnter={onHover}
+			>
 				<img
 					className='w-full'
 					src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${indexToShow}.png`}

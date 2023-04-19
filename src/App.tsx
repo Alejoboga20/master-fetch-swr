@@ -1,7 +1,10 @@
-import useSWR from 'swr';
+import useSWR, { preload } from 'swr';
 
 import { PokemonGrid, PokeBallIcon } from './components';
 import { PokemonResponse } from './types/pokemon';
+import { fetcher } from './api';
+
+preload('pokemon?limit=650', fetcher);
 
 export const App = () => {
 	const { data } = useSWR<PokemonResponse>('pokemon?limit=650');
