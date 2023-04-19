@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import { Suspense, lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
 import { PokemonDetails, PokemonGrid } from '../components';
@@ -12,11 +12,19 @@ export const router = createBrowserRouter([
 		children: [
 			{
 				path: '',
-				element: <PokemonGrid />,
+				element: (
+					<Suspense fallback={<div>Dashboard Skeleton</div>}>
+						<PokemonGrid />
+					</Suspense>
+				),
 			},
 			{
 				path: ':id',
-				element: <PokemonDetails />,
+				element: (
+					<Suspense fallback={<div>Details Skeleton</div>}>
+						<PokemonDetails />
+					</Suspense>
+				),
 			},
 		],
 	},

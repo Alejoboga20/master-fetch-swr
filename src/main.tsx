@@ -13,7 +13,7 @@ const root = createRoot(document.getElementById('root') as HTMLElement);
 root.render(
 	<React.StrictMode>
 		<ErrorBoundary fallback={<div>Dashboard Broken</div>}>
-			<Suspense fallback={<div>Dashboard skeleton</div>}>
+			<Suspense fallback={<div>Page skeleton</div>}>
 				<SWRConfig
 					value={{
 						fetcher,
