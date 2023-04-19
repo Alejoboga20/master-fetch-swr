@@ -1,12 +1,12 @@
 import useSWR, { preload } from 'swr';
 
-import { PokemonGrid, PokeBallIcon } from './components';
-import { PokemonResponse } from './types/pokemon';
-import { fetcher } from './api';
+import { PokemonGrid, PokeBallIcon } from '../components';
+import { PokemonResponse } from '../types/pokemon';
+import { fetcher } from '../api';
 
 preload('pokemon?limit=100', fetcher);
 
-export const App = () => {
+const RootPage = () => {
 	const { data } = useSWR<PokemonResponse>('pokemon?limit=20');
 
 	if (!data) throw new Error();
@@ -23,3 +23,5 @@ export const App = () => {
 		</main>
 	);
 };
+
+export default RootPage;

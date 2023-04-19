@@ -1,10 +1,11 @@
 import React, { Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
-import { SWRConfig } from 'swr';
+import { RouterProvider } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
+import { SWRConfig } from 'swr';
 
-import { App } from './App';
 import { fetcher } from './api';
+import { router } from './router';
 import './index.css';
 
 const root = createRoot(document.getElementById('root') as HTMLElement);
@@ -19,7 +20,7 @@ root.render(
 						suspense: true,
 					}}
 				>
-					<App />
+					<RouterProvider router={router} />
 				</SWRConfig>
 			</Suspense>
 		</ErrorBoundary>
