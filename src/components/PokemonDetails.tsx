@@ -1,8 +1,11 @@
 import useSWR from 'swr';
 import { PokemonDetails as IPokemonDetails } from '../types/pokemon';
+import { useParams } from 'react-router-dom';
 
 export const PokemonDetails = () => {
-	const { data } = useSWR<IPokemonDetails>(`pokemon/${1}`);
+	const { id } = useParams();
+
+	const { data } = useSWR<IPokemonDetails>(`pokemon/${id}`);
 
 	return (
 		<div className='flex flex-col justify-center items-center p-2'>
