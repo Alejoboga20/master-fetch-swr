@@ -6,14 +6,14 @@ import { SWRConfig } from 'swr';
 
 import { fetcher } from './api';
 import { router } from './router';
+import { PageSkeleton, DashboardBroken } from './components';
 import './index.css';
-import { PageSkeleton } from './components/skeletons/PageSkeleton';
 
 const root = createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
 	<React.StrictMode>
-		<ErrorBoundary fallback={<div>Dashboard Broken</div>}>
+		<ErrorBoundary fallback={<DashboardBroken />}>
 			<Suspense fallback={<PageSkeleton />}>
 				<SWRConfig
 					value={{
